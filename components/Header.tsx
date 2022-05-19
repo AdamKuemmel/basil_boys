@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import Logo from '../public/HomeBois.png'
 
-export default function index() {
+export default function Header() {
   const [show, setshow] = useState(false)
   return (
     <div className="sticky z-10 bg-transparent">
