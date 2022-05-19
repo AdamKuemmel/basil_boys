@@ -3,9 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Header from '../components/Header'
-import logo from '../public/logoAK.png'
+import Hero from '../components/Hero'
+import logo from '../public/HomeBois.png'
 import { sanityClient, urlFor } from '../sanity'
 import { Post } from '../typings'
+import About from '../components/About'
 
 interface Props {
   posts: [Post]
@@ -15,30 +17,15 @@ const Home = ({ posts }: Props) => {
   const usePosts = posts
   console.log(posts)
   return (
-    <div className="mx-auto max-w-7xl">
+    <div className="mx-auto">
       <Head>
-        <title>Adam new APP</title>
-        <link rel="icon" href="/logoAK.png" />
+        <title>HomeBois | Vegan Comfort Food</title>
+        <link rel="icon" href="/HomeBois.png" />
       </Head>
-      <Header />
+      {/* <Header /> */}
+      <Hero />
       {/* her0 */}
-      <div className="flex items-center justify-between py-10 bg-yellow-400 border-black border-y lg:py-0">
-        <div className="px-10 space-y-5">
-          <h1 className="max-w-xl font-serif text-6xl">
-            <span className="underline decloration-4 decoration-black">
-              Adam Kuemmel
-            </span>
-            blog site using NextJS, SanityCMS, and TailwindCSS
-          </h1>
-          <h2>Built with speed, for speed. Check the lighthouse rating</h2>
-        </div>
-        <div>
-          <div className="hidden h-32 md:inline-flex lg:h-full">
-            <Image className="object-contain " src={logo} alt="logoAK" />
-          </div>
-        </div>
-      </div>
-
+      <About />
       <div className="grid grid-cols-1 gap-3 p-2 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
         {usePosts.map((post) => (
           <Link key={post._id} href={`/post/${post.slug.current}`}>
