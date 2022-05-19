@@ -1,7 +1,7 @@
 {
   "root": true,
   "project": {
-    "name": "blog-demo"
+    "name": "Home Bois"
   },
   "api": {
     "projectId": "o82zv462",
@@ -15,9 +15,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [

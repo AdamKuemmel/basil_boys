@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useState } from 'react'
 import Logo from '../public/HomeBois.png'
 
@@ -96,7 +97,14 @@ export default function Header() {
             </svg>
           </div>
           <div className="flex items-center space-x-3 ">
-            <Image src={Logo} height={100} width={100} />
+            <Link href="/">
+              <Image
+                src={Logo}
+                height={100}
+                width={100}
+                className="cursor-pointer"
+              />
+            </Link>
           </div>
           <div className="flex-row items-center hidden space-x-4 border h-14 rounded-xl border-slate-500 bg-slate-500/50 backdrop-blur-sm sm:flex">
             <p className="flex items-center justify-center w-24 h-10 space-x-2 text-sm font-bold leading-3 text-white ">

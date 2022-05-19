@@ -13,7 +13,7 @@ export default function Hero() {
           <div className="grid place-items-center">
             <div className="container flex flex-col items-center sm:py-24">
               <div className="flex-col items-center justify-center mb-5 sm:mb-10 sm:w-2/3 lg:flex">
-                <h1 className="text-4xl font-black leading-9 text-center text-white sm:text-3xl md:text-4xl md:leading-10 lg:text-5xl xl:text-6xl">
+                <h1 className="text-4xl font-black leading-9 text-center text-white pt-36 sm:text-3xl md:pt-20 md:text-4xl md:leading-10 lg:text-5xl xl:text-6xl">
                   <span className="text-blue-300 ">
                     Vegan
                     <br />
