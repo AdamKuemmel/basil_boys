@@ -8,6 +8,8 @@ import logo from '../public/HomeBois.png'
 import { sanityClient, urlFor } from '../sanity'
 import { Post } from '../typings'
 import About from '../components/About'
+import Cater from '../components/Cater'
+import Footer from '../components/Footer'
 
 interface Props {
   posts: [Post]
@@ -25,9 +27,9 @@ const Home = ({ posts }: Props) => {
       {/* <Header /> */}
       <Hero />
       {/* her0 */}
-      <div className="grid grid-cols-1 gap-3 p-2 bg-yellow-200 snap-normal sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
-        {usePosts.map(
-          (post) => (
+      <div className="bg-yellow-200 pb-28">
+        <div className="mx-auto grid max-w-[1400px] snap-normal grid-cols-1 gap-3 bg-yellow-200 p-2 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
+          {usePosts.slice(0, 6).map((post) => (
             <Link key={post._id} href={`/post/${post.slug.current}`}>
               <div className="overflow-hidden rounded-lg cursor-pointer group">
                 <img
@@ -52,11 +54,12 @@ const Home = ({ posts }: Props) => {
                 </div>
               </div>
             </Link>
-          ),
-          5
-        )}
+          ))}
+        </div>
       </div>
       <About />
+      <Cater />
+      <Footer />
     </div>
   )
 }
