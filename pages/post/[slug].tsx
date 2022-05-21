@@ -7,6 +7,27 @@ import PortableText from 'react-portable-text'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import Image from 'next/image'
 
+const serializers = {
+  types: {
+    code: (props: {
+      node: {
+        language: any
+        code:
+          | boolean
+          | React.ReactChild
+          | React.ReactFragment
+          | React.ReactPortal
+          | null
+          | undefined
+      }
+    }) => (
+      <pre data-language={props.node.language}>
+        <code>{props.node.code}</code>
+      </pre>
+    ),
+  },
+}
+
 interface IFormInput {
   _id: string
   name: string
@@ -19,7 +40,6 @@ interface Props {
 }
 
 function Post({ post }: Props) {
-  console.log(post)
   const [submitted, setSubmitted] = useState(false)
 
   const {
@@ -41,6 +61,8 @@ function Post({ post }: Props) {
         setSubmitted(false)
       })
   }
+  console.log(urlFor(post.subpics[0]).url()!)
+
   return (
     <div>
       <div className="">
@@ -67,6 +89,74 @@ function Post({ post }: Props) {
             <span className="text-green-600">{post.author.name}</span> -
             Published at {new Date(post._createdAt).toLocaleString()}
           </p>
+          <h1>
+            <h2>body</h2>
+            <PortableText
+              dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
+              projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+              content={post.body}
+              serializers={{
+                h1: (props: any) => (
+                  <h1 className="my-5 text-2xl font-bold" {...props} />
+                ),
+                h2: (props: any) => (
+                  <h1 className="my-5 text-xl font-bold" {...props} />
+                ),
+                li: (children: any) => (
+                  <li className="ml-4 list-disc">{children}</li>
+                ),
+                link: ({ href, children }: any) => (
+                  <a href={href} className="text-blue-500 hover:underline">
+                    {children}
+                  </a>
+                ),
+              }}
+            />
+          </h1>
+          <h1>notes</h1>
+          <PortableText
+            dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
+            projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+            content={post.notes}
+            serializers={{
+              h1: (props: any) => (
+                <h1 className="my-5 text-2xl font-bold" {...props} />
+              ),
+              h2: (props: any) => (
+                <h1 className="my-5 text-xl font-bold" {...props} />
+              ),
+              li: (children: any) => (
+                <li className="ml-4 list-disc">{children}</li>
+              ),
+              link: ({ href, children }: any) => (
+                <a href={href} className="text-blue-500 hover:underline">
+                  {children}
+                </a>
+              ),
+            }}
+          />
+        </div>
+        <div className="w-[400px]">
+          <h1>Steps</h1>
+          {post.steps.map((step, idx) => (
+            <h1 key={idx} className="pb-5">
+              {step}
+            </h1>
+          ))}
+        </div>
+        <div className="w-[400px]">
+          <h1>Ingredients</h1>
+          {post.ingredients.map((item, idx) => (
+            <h1 key={idx} className="pb-5">
+              {item}
+            </h1>
+          ))}
+        </div>
+        <div className="w-[400px]">
+          <h1>Ingredients</h1>
+          {post.subpics.map((item, idx) => (
+            <img key={idx} className="pb-5" src={urlFor(item).url()!} alt="" />
+          ))}
         </div>
       </div>
     </div>
@@ -240,6 +330,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   _id,
   _createdAt,
   title,
+  notes,
   author-> {
   name,
   image
@@ -251,7 +342,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 description,
 mainImage,
 slug,
-body
+body,
+steps,
+ingredients,
+subpics
+
+
 
 }`
   const post = await sanityClient.fetch(query, {
