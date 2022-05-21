@@ -107,12 +107,16 @@ export default function Header() {
             </Link>
           </div>
           <div className="flex-row items-center hidden space-x-4 border h-14 rounded-xl border-slate-500 bg-slate-500/50 backdrop-blur-sm sm:flex">
-            <p className="flex items-center justify-center w-24 h-10 space-x-2 text-sm font-bold leading-3 text-white ">
-              Recipes
-            </p>
-            <p className="flex items-center justify-center w-24 h-10 space-x-2 text-sm font-bold leading-3 text-white duration-150 ">
-              About
-            </p>
+            <Link href="/recipes">
+              <p className="flex items-center justify-center w-24 h-10 space-x-2 text-sm font-bold leading-3 text-white cursor-pointer">
+                Recipes
+              </p>
+            </Link>
+            <Link href="/about">
+              <p className="flex items-center justify-center w-24 h-10 space-x-2 text-sm font-bold leading-3 text-white duration-150 cursor-pointer ">
+                About
+              </p>
+            </Link>
           </div>
           {/* Burger Icon */}
           <div
