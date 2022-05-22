@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.veganhomebois.com/
+
+# Sitemaps
+Sitemap: https://www.veganhomebois.com/sitemap.xml
