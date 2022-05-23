@@ -6,6 +6,7 @@ import { Post } from '../../typings'
 import PortableText from 'react-portable-text'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const serializers = {
   types: {
@@ -64,103 +65,133 @@ function Post({ post }: Props) {
   console.log(urlFor(post.subpics[0]).url()!)
 
   return (
-    <div>
-      <div className="">
-        <Header />
-        <img
-          className="sticky top-0 h-[70vh] w-full  object-cover"
-          src={urlFor(post.mainImage).url()!}
-          alt=""
+    <>
+      <div className="bg-slate-200">
+        <div className="relative h-auto max-h-[70vh]">
+          <Header />
+          <Image
+            src={urlFor(post.mainImage).url()!}
+            layout="fill"
+            objectFit="cover"
+          />
+          <div className="relative top-0 w-full h-screen ">
+            <div className="grid place-items-center">
+              <div className="container flex flex-col items-center sm:py-24">
+                <div className="flex-col items-center justify-center mb-5 sm:mb-10 sm:w-2/3 lg:flex"></div>
+                <div className="flex items-center justify-center"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="text-center">
+          <h1 className="mt-10 mb-3 text-3xl font-bold text-blue-300">
+            {post.title}
+          </h1>
+          <h2 className="pb-10 mb-2 text-xl font-light text-gray-500">
+            {post.description}
+          </h2>
+        </div>
+        <PortableText
+          className="p-3 mx-auto text-center text-black md:w-2/3 md:p-5"
+          dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
+          projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+          content={post.body}
+          serializers={{
+            h1: (props: any) => (
+              <h1 className="my-5 text-2xl font-bold text-center" {...props} />
+            ),
+            h2: (props: any) => (
+              <h1 className="my-5 text-xl font-bold text-center" {...props} />
+            ),
+            li: (children: any) => (
+              <li className="ml-4 text-center list-disc">{children}</li>
+            ),
+            link: ({ href, children }: any) => (
+              <a href={href} className="text-blue-500 hover:underline">
+                {children}
+              </a>
+            ),
+          }}
         />
-      </div>
-      <div className="p-10 text-center">
-        <h1 className="mt-10 mb-3 text-3xl ">{post.title}</h1>
-        <h2 className="pb-10 mb-2 text-xl font-light text-gray-500">
-          {post.description}
-        </h2>
-        <div className="flex items-center space-x-2">
+        <PortableText
+          className="p-3 pb-20 mx-auto text-center text-black md:w-2/3 md:p-5"
+          dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
+          projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+          content={post.notes}
+          serializers={{
+            h1: (props: any) => (
+              <h1 className="my-5 text-2xl font-bold" {...props} />
+            ),
+            h2: (props: any) => (
+              <h1 className="my-5 text-xl font-bold" {...props} />
+            ),
+            li: (children: any) => (
+              <li className="ml-4 list-disc">{children}</li>
+            ),
+            link: ({ href, children }: any) => (
+              <a href={href} className="text-blue-500 hover:underline">
+                {children}
+              </a>
+            ),
+          }}
+        />{' '}
+        <div className="relative mx-auto h-[50vh] md:h-[70vh]">
+          <Image
+            src={urlFor(post.subpics[0]).url()!}
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
+        <div className="flex-col p-4 pt-40 mx-auto md:w-1/3 ">
+          <h1 className="pb-10 text-5xl font-bold text-center text-blue-400 uppercase">
+            Ingredients
+          </h1>
+          {post.ingredients.map((item, idx) => (
+            <ul key={idx} className="p-4 pb-5 text-xl text-left text-black">
+              <li className="list-disc">{item}</li>
+            </ul>
+          ))}
+        </div>
+        <div className="flex-col p-4 mx-auto md:w-1/3 ">
+          <h1 className="pb-10 text-4xl font-bold text-center text-blue-400">
+            INSTRUCTIONS
+          </h1>
+          {post.steps.map((step, idx) => (
+            <h1 key={idx} className="pb-10 text-black">
+              <span className="p-1 text-lg font-bold">{idx + 1 + '.'}</span>
+              {step}
+            </h1>
+          ))}
+        </div>
+        <section className="overflow-hidden text-gray-700 ">
+          <div className="container px-5 py-2 mx-auto lg:px-32 lg:pt-12">
+            <div className="flex flex-wrap -m-1 md:-m-2 ">
+              {post.subpics.map((item, idx) => (
+                <div className="flex flex-wrap w-1/3">
+                  <div className="w-full p-1 md:p-2">
+                    <div className="block max-h-[110px] w-full overflow-hidden rounded-xl object-cover object-center md:max-h-[350px] ">
+                      <img key={idx} src={urlFor(item).url()!} alt="" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <div className="flex p-5 pt-40">
           <img
             className="w-10 h-10 rounded-full"
             src={urlFor(post.author.image).url()!}
             alt=""
           />
-          <p className="text-sm font-extralight">
-            Blog post by{' '}
+          <p className="pl-2 text-sm font-extralight">
+            Recipe by <br />
             <span className="text-green-600">{post.author.name}</span> -
-            Published at {new Date(post._createdAt).toLocaleString()}
+            Published on {new Date(post._createdAt).toLocaleString()}
           </p>
-          <h1>
-            <h2>body</h2>
-            <PortableText
-              dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
-              projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
-              content={post.body}
-              serializers={{
-                h1: (props: any) => (
-                  <h1 className="my-5 text-2xl font-bold" {...props} />
-                ),
-                h2: (props: any) => (
-                  <h1 className="my-5 text-xl font-bold" {...props} />
-                ),
-                li: (children: any) => (
-                  <li className="ml-4 list-disc">{children}</li>
-                ),
-                link: ({ href, children }: any) => (
-                  <a href={href} className="text-blue-500 hover:underline">
-                    {children}
-                  </a>
-                ),
-              }}
-            />
-          </h1>
-          <h1>notes</h1>
-          <PortableText
-            dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
-            projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
-            content={post.notes}
-            serializers={{
-              h1: (props: any) => (
-                <h1 className="my-5 text-2xl font-bold" {...props} />
-              ),
-              h2: (props: any) => (
-                <h1 className="my-5 text-xl font-bold" {...props} />
-              ),
-              li: (children: any) => (
-                <li className="ml-4 list-disc">{children}</li>
-              ),
-              link: ({ href, children }: any) => (
-                <a href={href} className="text-blue-500 hover:underline">
-                  {children}
-                </a>
-              ),
-            }}
-          />
-        </div>
-        <div className="w-[400px]">
-          <h1>Steps</h1>
-          {post.steps.map((step, idx) => (
-            <h1 key={idx} className="pb-5">
-              {step}
-            </h1>
-          ))}
-        </div>
-        <div className="w-[400px]">
-          <h1>Ingredients</h1>
-          {post.ingredients.map((item, idx) => (
-            <h1 key={idx} className="pb-5">
-              {item}
-            </h1>
-          ))}
-        </div>
-        <div className="w-[400px]">
-          <h1>Ingredients</h1>
-          {post.subpics.map((item, idx) => (
-            <img key={idx} className="pb-5" src={urlFor(item).url()!} alt="" />
-          ))}
         </div>
       </div>
-    </div>
-
+    </>
     // <main>
     //   <Header />
 

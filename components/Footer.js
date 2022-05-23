@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <div className="bg-yellow-200 ">
+    <div className="bg-slate-200 ">
       <nav className="px-4 py-5 sm:py-6 sm:px-7 2xl:container 2xl:mx-auto">
         {/* For large and Medium-sized Screen */}
         <div className="flex justify-between ">

@@ -7,6 +7,10 @@ module.exports = {
       'https://framerusercontent.com/',
       'https://ga.jspm.io/',
       'https://jspm.dev/',
+      'https://cdn.sanity.io/',
     ],
+  },
+  images: {
+    domains: ['cdn.sanity.io'],
   },
 }

@@ -4,8 +4,8 @@ import aboutIMG from '../public/aboutIMG.png'
 
 export default function About() {
   return (
-    <div className="pb-40 bg-yellow-200">
-      <div className="mx-auto max-w-[1300px] overflow-y-hidden bg-yellow-200">
+    <div className="pb-40 bg-slate-200">
+      <div className="mx-auto max-w-[1300px] overflow-y-hidden bg-slate-200">
         <div className="max-w-2xl py-12 mx-auto px- xl:container xl:mx-auto ">
           <div className="items-center justify-center lg:flex lg:space-x-12 2xl:space-x-6">
             <div className="max-w-3xl">

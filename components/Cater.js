@@ -1,8 +1,10 @@
+import Image from 'next/image'
 import React from 'react'
+import pastarolling from '../public/pastarolling.jpg'
 function Cater() {
   return (
-    <div className="bg-yellow-200 pb-96">
-      <div className="mx-auto max-w-[1300px] bg-yellow-200 pt-16 xl:flex xl:justify-end">
+    <div className="bg-slate-200 pb-96">
+      <div className="mx-auto max-w-[1300px] bg-slate-200 pt-16 xl:flex xl:justify-end">
         <div className="container sm:mx-auto">
           <div className="justify-between block md:flex lg:items-center xl:flex xl:items-center">
             <div className="w-11/12 mx-auto md:w-5/12 xl:mx-0 xl:w-4/12">
@@ -11,12 +13,11 @@ function Cater() {
                   We Cook!
                 </h1>
                 <h1 className="pt-12 mb-3 text-3xl font-semibold text-center text-blue-400 md:text-left xl:pt-0">
-                  So you dont have to.
+                  Let's Make a Connection.
                 </h1>
                 <p className="pb-10 mb-6 text-lg text-center text-gray-600 md:text-left">
-                  Seriously, we love to Cater. We can accomodate for any size
-                  tribe of vegan foodies. Enter your email and we will get in
-                  touch.
+                  Need a recipe developer? What about a private Chef? Just reach
+                  out and we’ll make it happen!
                 </p>
                 <div className="flex flex-wrap w-full">
                   <div className="w-full">
@@ -30,13 +31,13 @@ function Cater() {
                       <input
                         type="email"
                         id="email"
-                        placeholder="grassgoblin@gmail.com"
+                        placeholder="youremail@gmail.com"
                         className="py-2 pl-2 pr-2 border border-blue-300 rounded-lg outline-none "
                       />
                     </div>
                     <button
                       type="submit"
-                      className="w-full rounded-lg bg-[#BAE8E8] px-6 py-3 text-base font-bold text-[#272343] hover:bg-indigo-600 focus:outline-none"
+                      className="w-full rounded-lg bg-[#BAE8E8] px-6 py-3 text-base font-bold text-[#272343] hover:bg-yellow-200 focus:outline-none"
                     >
                       Start the Oven
                     </button>
@@ -44,10 +45,10 @@ function Cater() {
                 </div>
               </div>
             </div>
-            <div className="relative mx-auto mt-8 flex w-11/12 justify-end bg-yellow-200 py-20 md:w-5/12 xl:mx-0 xl:mt-0 xl:w-[30%]">
+            <div className="xl:w-] relative mx-auto mt-8 flex w-11/12 justify-end bg-slate-200 py-20 md:w-5/12 xl:mx-1 xl:mt-0 ">
               <div className="w-4/5 h-4/5">
-                <img
-                  src="https://cdn.tuk.dev/assets/photo-1496430689199-7d6a8ebd3a2f.jfif"
+                <Image
+                  src={pastarolling}
                   alt
                   className="relative z-10 object-cover w-full h-full -ml-12 overflow-hidden rounded sm:-ml-20 md:-ml-20 lg:-ml-32 xl:-ml-56"
                 />

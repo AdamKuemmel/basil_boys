@@ -27,8 +27,8 @@ const Home = ({ posts }: Props) => {
       {/* <Header /> */}
       <Hero />
       {/* her0 */}
-      <div className="bg-yellow-200 pb-28">
-        <div className="mx-auto grid max-w-[1400px] snap-normal grid-cols-1 gap-3 bg-yellow-200 p-2 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
+      <div className="bg-slate-200 pb-28">
+        <div className="mx-auto grid max-w-[1400px] snap-normal grid-cols-1 gap-3 bg-slate-200 p-2 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3">
           {usePosts.slice(0, 6).map((post) => (
             <Link key={post._id} href={`/post/${post.slug.current}`}>
               <div className="overflow-hidden rounded-lg cursor-pointer group">
