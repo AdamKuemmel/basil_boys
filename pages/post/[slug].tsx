@@ -167,10 +167,10 @@ function Post({ post }: Props) {
           <div className="container px-5 py-2 mx-auto lg:px-32 lg:pt-12">
             <div className="flex flex-wrap -m-1 md:-m-2 ">
               {post.subpics.map((item, idx) => (
-                <div className="flex flex-wrap w-1/3">
+                <div className="flex flex-wrap w-1/3" key={idx}>
                   <div className="w-full p-1 md:p-2">
                     <div className="block max-h-[110px] w-full overflow-hidden rounded-xl object-cover object-center md:max-h-[350px] ">
-                      <img key={idx} src={urlFor(item).url()!} alt="" />
+                      <img src={urlFor(item).url()!} alt="" />
                     </div>
                   </div>
                 </div>
